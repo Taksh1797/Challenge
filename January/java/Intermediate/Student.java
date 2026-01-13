@@ -9,7 +9,6 @@ abstract class StudentData extends Student {
         System.out.println("Grade: " + grade);
     }
 }
-
 class Undergraduate extends StudentData {
     void calculateGrade() { 
         if(Marks > 100 || Marks < 0){
@@ -30,7 +29,6 @@ class Undergraduate extends StudentData {
         }
     }
 }
-
 class X extends StudentData {
     void calculateGrade() { 
         if(Marks > 100 || Marks < 0){
@@ -55,7 +53,6 @@ class X extends StudentData {
         }
     }
 }
-
 public class Student {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
