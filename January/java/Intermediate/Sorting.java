@@ -103,8 +103,6 @@ public class Sorting {
                 }
                 else
                     i++;
-                if(h>=n-1&&l<=i)
-                    i++;
             }
         }
         System.out.println("Sorted by Quick : ");
