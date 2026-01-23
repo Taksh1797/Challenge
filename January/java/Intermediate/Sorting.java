@@ -5,7 +5,7 @@ public class Sorting {
     public static Scanner sc = new Scanner(System.in);
     public static void bub(int a[]){
         for(int i=0;i<n-1;i++){
-            for(int j=0;j<n-1;j++){  
+            for(int j=0;j<n-i-1;j++){  
                 if(a[j]>a[j+1]){
                     a[j]=a[j]+a[j+1];
                     a[j+1]=a[j]-a[j+1];
@@ -20,17 +20,14 @@ public class Sorting {
     }
     public static void sel(int a[]){
         for(int i=0;i<n;i++){
-            int min=a[i];
-            for(int j=i;j<n;j++){  
-                if(min>a[j]){
-                    min+=a[j];
-                    a[j]=min-a[j];
-                    min-=a[j];
-                }
+            int minIdx=i;
+            for(int j=i+1;j<n;j++){  
+                if(a[minIdx]>a[j])
+                    minIdx=j;
             }
-            min+=a[i];
-            a[i]=min-a[i];
-            min-=a[i];
+            int t = a[i];
+            a[i]=a[minIdx];
+            a[minIdx]=t;
         }
         System.out.println("Sorted by Selection : ");
         for(int i=0;i<n;i++){
@@ -85,6 +82,35 @@ public class Sorting {
             a[j]=mer[i];
         }
     }
+    public static void qui(int a[]){
+        int pivot,i=0;
+        while (i<n-1) {
+            int h=i+1,l=n-1;
+            pivot = a[i];
+            while (h<n && a[h]<=pivot)
+                h++;
+            while (l>i+1 && a[l]>=pivot)
+                l--;
+            if(h<l){
+                int t = a[h];
+                a[h]=a[l];
+                a[l]=t;
+            }
+            else{
+                if(a[i]>a[l]){
+                    a[i]=a[l];
+                    a[l]=pivot;
+                }
+                else
+                    i++;
+                if(h>=n-1&&l<=i)
+                    i++;
+            }
+        }
+        System.out.println("Sorted by Quick : ");
+        for (int index = 0; index < n; index++)
+            System.out.println(a[index]);
+    }
     public static void main(String args[]){
         System.out.println("Enter Array length : ");
         n=sc.nextInt();
@@ -96,7 +122,8 @@ public class Sorting {
         }
         //bub(a);
         //sel(a);
-        //ins(a); 
+        //ins(a);
         //mer(a);
+        qui(a);
     }
 }
